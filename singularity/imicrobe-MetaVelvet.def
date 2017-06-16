@@ -1,0 +1,27 @@
+Bootstrap: docker
+From: ubuntu:latest
+
+%runscript
+    echo "Hello!"
+
+%environment
+    PATH=$PATH:/MetaVelvet-1.2.02
+
+%post
+    apt update
+    apt install -y wget build-essential
+
+    # Install from source
+    cd /
+    wget http://metavelvet.dna.bio.keio.ac.jp/src/MetaVelvet-1.2.02.tgz
+    tar -xf MetaVelvet-1.2.02
+    cd MetaVelvet-1.2.02
+    make
+
+    # Create mount points for TACC directories
+    mkdir /home1
+    mkdir /scratch
+    mkdir /work
+
+%test
+    /MetaVelvet-1.2.02/meta-velvetg
