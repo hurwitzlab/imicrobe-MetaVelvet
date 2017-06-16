@@ -9,12 +9,12 @@ From: ubuntu:latest
 
 %post
     apt update
-    apt install -y wget build-essential
+    apt install -y wget build-essential libz-dev
 
     # Install from source
     cd /
     wget http://metavelvet.dna.bio.keio.ac.jp/src/MetaVelvet-1.2.02.tgz
-    tar -xf MetaVelvet-1.2.02
+    tar -xf MetaVelvet-1.2.02.tgz
     cd MetaVelvet-1.2.02
     make
 
